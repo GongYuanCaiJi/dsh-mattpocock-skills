@@ -40,9 +40,8 @@
 dsh plugin --profile <name> add github:GongYuanCaiJi/dsh-mattpocock-skills
 ```
 
-全新 profile 首次安装时，pnpm 的 build-script 白名单可能拒绝 git 安装触发的 `prepare` 构建：
-`dsh` 会打印需要在 profile 的 `pnpm-workspace.yaml` 里加的 `allowBuilds` 键，加上之后重跑同一命令即可
-（本插件无 build script、零运行时依赖，白名单只是 pnpm 的通用门禁）。
+本插件无 build script、零运行时依赖，git 安装不会触发 pnpm 的 build-script 白名单，
+无需配置 `allowBuilds`。
 
 本地路径安装（同样零依赖，无需先 `npm install`）：
 
@@ -50,6 +49,11 @@ dsh plugin --profile <name> add github:GongYuanCaiJi/dsh-mattpocock-skills
 git clone https://github.com/GongYuanCaiJi/dsh-mattpocock-skills.git
 dsh plugin --profile <name> add ./dsh-mattpocock-skills
 ```
+
+### 用法
+
+装好即用，无需额外配置：模型在会话中看到技能 catalog，任务匹配时自动加载技能正文；
+也可以显式调用——在输入里以 `/技能名` 开头，例如 `/tdd`、`/grilling`、`/code-review`。
 
 ### 移植出身
 
@@ -60,6 +64,11 @@ dsh plugin --profile <name> add ./dsh-mattpocock-skills
 不在上游插件范围内，未移植。
 
 **如果你喜欢这些技能，请也给[上游仓库](https://github.com/mattpocock/skills)点个 star。**
+
+### License
+
+MIT。上游 [mattpocock/skills](https://github.com/mattpocock/skills) `Copyright (c) 2026 Matt Pocock`，
+本移植 `Copyright (c) 2026 GongYuanCaiJi`。见 [LICENSE](LICENSE)。
 
 ---
 
@@ -97,10 +106,8 @@ exactly as upstream. Users can also invoke a skill explicitly by starting a mess
 dsh plugin --profile <name> add github:GongYuanCaiJi/dsh-mattpocock-skills
 ```
 
-On a fresh profile, pnpm's build-script allowlist may refuse the git-install `prepare` build:
-`dsh` prints the exact `allowBuilds` key to add under `allowBuilds` in the profile's
-`pnpm-workspace.yaml`, after which the same command succeeds (this package has no build scripts and
-zero runtime dependencies — the allowlist is pnpm's generic gate).
+This package has no build scripts and zero runtime dependencies, so a git install
+does not trip pnpm's build-script allowlist — no `allowBuilds` configuration needed.
 
 Local-path install (also zero dependencies — no `npm install` needed first):
 
@@ -108,6 +115,12 @@ Local-path install (also zero dependencies — no `npm install` needed first):
 git clone https://github.com/GongYuanCaiJi/dsh-mattpocock-skills.git
 dsh plugin --profile <name> add ./dsh-mattpocock-skills
 ```
+
+### Usage
+
+Ready to use after install — no configuration needed: the model sees the skill catalog in the
+session and loads a skill's body when a task matches. You can also invoke one explicitly by
+starting a message with `/skill-name`, e.g. `/tdd`, `/grilling`, `/code-review`.
 
 ### Attribution
 
@@ -118,3 +131,8 @@ the upstream plugin actually ships are ported; `skills/misc`, `skills/in-progres
 `skills/deprecated` are outside the upstream plugin surface and are not included.
 
 **If you like these skills, please also star the [upstream repository](https://github.com/mattpocock/skills).**
+
+### License
+
+MIT. Upstream [mattpocock/skills](https://github.com/mattpocock/skills) `Copyright (c) 2026 Matt Pocock`;
+this port `Copyright (c) 2026 GongYuanCaiJi`. See [LICENSE](LICENSE).

@@ -33,6 +33,7 @@
   },
   "files": [
     "index.js",
+    "index.d.ts",
     "lib",
     "skills",
     "cordis.patch.yml",
@@ -41,6 +42,7 @@
     "THIRD_PARTY_NOTICES.md"
   ],
   "main": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": "./index.js"
   },
